@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class hw2task3 {
     public static void main(String[] args) throws IOException {
-        FileReader fr = new FileReader("C:/Users/79818/Desktop/Java/class 1/homework2/students.json");
+        FileReader fr = new FileReader("students.json");
         Scanner s = new Scanner(fr);
         while (s.hasNextLine()) {
             String[] line = s.nextLine().split(",");
