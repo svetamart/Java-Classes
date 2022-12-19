@@ -1,0 +1,8 @@
+дек. 11, 2022 2:54:24 PM hw2task4 main
+INFO: 435.0
+дек. 11, 2022 2:54:24 PM hw2task4 main
+INFO: /
+дек. 11, 2022 2:54:24 PM hw2task4 main
+INFO: 34.8
+дек. 11, 2022 2:54:24 PM hw2task4 main
+INFO: 435.0 / 34.8 = 12.500000000000002
