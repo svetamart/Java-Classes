@@ -160,7 +160,7 @@ public class laptopStore {
         res.put(1, "1920x1080");
         res.put(2, "1920x1200");
         res.put(3, "2560x1600");
-        res.put(4, "3456×2234");
+        res.put(4, "3456x2234");
 
         String chosenResolution = "";
 
