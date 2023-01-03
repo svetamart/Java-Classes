@@ -5,8 +5,10 @@ public class laptopStore {
     public static void main(String[] args) {
         
         HashSet<Laptop> laptops = new HashSet<>();
+        fillLaptopList(laptops);
         
         Map<Integer, String> characteristics = new HashMap<>();
+        fillCharacteristicsList(characteristics);
         
         Scanner scan = new Scanner(System.in);
 
