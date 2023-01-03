@@ -3,6 +3,50 @@ import java.util.stream.Collectors;
 
 public class laptopStore {
     public static void main(String[] args) {
+        
+        HashSet<Laptop> laptops = new HashSet<>();
+        
+        Map<Integer, String> characteristics = new HashMap<>();
+        
+        Scanner scan = new Scanner(System.in);
+
+        int[] answer = criteria(characteristics);
+        System.out.println(Arrays.toString(answer));
+
+        String chosenBrand = chosenBrand(scan, answer);
+        String chosenColor = chosenColor(scan, answer);
+        String chosenResolution = chosenResolution(scan, answer);
+        String chosenScreenSize = chosenScreenSize(scan, answer);
+        String chosenProcessor = chosenProcessor(scan, answer);
+        int chosenProcessorCount = chosenProcessorCount(scan, answer);
+        int chosenRam = chosenRam(scan, answer);
+        int chosenHardDiskSize = chosenHardDiskSize(scan, answer);
+        String chosenGraphicsCoprocessor = chosenGraphicsCoprocessor(scan, answer);
+        String chosenOS = chosenOS(scan, answer);
+        int chosenPrice = ChosenPrice(scan, answer);
+
+
+        HashSet<Laptop> firstPart = new HashSet<>(filteredScreenSize(chosenScreenSize, filteredRes(chosenResolution,
+                filteredColor(chosenColor, filteredBrand(chosenBrand, laptops)))));
+        HashSet<Laptop> secondPart = new HashSet<>(filteredHardDiskSize(chosenHardDiskSize, filteredRam(chosenRam,
+                filteredProcessorCount(chosenProcessorCount, filteredProcessor(chosenProcessor, firstPart)))));
+        HashSet<Laptop> res = new HashSet<>(filteredPrice(chosenPrice, filteredOS(chosenOS,
+                filteredGraphicsCoprocessor(chosenGraphicsCoprocessor, secondPart))));
+
+
+        if (!res.isEmpty()) {
+            System.out.println(res);
+        }
+        else {
+            System.out.println("К сожалению, по заданным параметрам ничего не нашлось :(");
+        }
+
+
+    }
+
+    
+    public static HashSet<Laptop> fillLaptopList (HashSet<Laptop> laptops) {
+
         Laptop l1 = new Laptop("ASUS", "X415KA-EK070W", "Silver", "1920x1080", "14'",
                 "Intel Pentium Silver", 1100, 4, 4, "SSD",
                 128, "Intel UHD Graphics",
@@ -44,8 +88,7 @@ public class laptopStore {
                 "13.3'", "Apple M1", 3200, 8, 8, "SSD",
                 512, "Apple graphics 8-core", "macOS", 1.4, 79990);
 
-
-        HashSet<Laptop> laptops = new HashSet<>();
+        
         laptops.add(l1);
         laptops.add(l2);
         laptops.add(l3);
@@ -57,7 +100,11 @@ public class laptopStore {
         laptops.add(l9);
         laptops.add(l10);
 
-        Map<Integer, String> characteristics = new HashMap<>();
+        return laptops;
+        
+    }
+
+    public static Map<Integer, String> fillCharacteristicsList (Map<Integer, String> characteristics) {
         characteristics.put(1, "Производитель");
         characteristics.put(2, "Цвет");
         characteristics.put(3, "Разрешение экрана");
@@ -70,42 +117,8 @@ public class laptopStore {
         characteristics.put(10, "Операционная система");
         characteristics.put(11, "Цена");
 
-        Scanner scan = new Scanner(System.in);
-
-        int[] answer = criteria(characteristics);
-        System.out.println(Arrays.toString(answer));
-
-        String chosenBrand = chosenBrand(scan, answer);
-        String chosenColor = chosenColor(scan, answer);
-        String chosenResolution = chosenResolution(scan, answer);
-        String chosenScreenSize = chosenScreenSize(scan, answer);
-        String chosenProcessor = chosenProcessor(scan, answer);
-        int chosenProcessorCount = chosenProcessorCount(scan, answer);
-        int chosenRam = chosenRam(scan, answer);
-        int chosenHardDiskSize = chosenHardDiskSize(scan, answer);
-        String chosenGraphicsCoprocessor = chosenGraphicsCoprocessor(scan, answer);
-        String chosenOS = chosenOS(scan, answer);
-        int chosenPrice = ChosenPrice(scan, answer);
-
-
-        HashSet<Laptop> firstPart = new HashSet<>(filteredScreenSize(chosenScreenSize, filteredRes(chosenResolution,
-                filteredColor(chosenColor, filteredBrand(chosenBrand, laptops)))));
-        HashSet<Laptop> secondPart = new HashSet<>(filteredHardDiskSize(chosenHardDiskSize, filteredRam(chosenRam,
-                filteredProcessorCount(chosenProcessorCount, filteredProcessor(chosenProcessor, firstPart)))));
-        HashSet<Laptop> res = new HashSet<>(filteredPrice(chosenPrice, filteredOS(chosenOS,
-                filteredGraphicsCoprocessor(chosenGraphicsCoprocessor, secondPart))));
-
-
-        if (!res.isEmpty()) {
-            System.out.println(res);
-        }
-        else {
-            System.out.println("К сожалению, по заданным параметрам ничего не нашлось :(");
-        }
-
-
+        return characteristics;
     }
-
 
     public static String chosenBrand(Scanner scan, int[] answer) {
         Map<Integer, String> brands = new HashMap<>();
